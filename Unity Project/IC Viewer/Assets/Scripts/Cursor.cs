@@ -52,5 +52,11 @@ public class Cursor : MonoBehaviour
         cursor.transform.eulerAngles = new Vector3(0, cam.transform.rotation.eulerAngles.y, 0);
 
         cursor.transform.position = CameraController.centerPoint;
+
+        if (EditorManager.colorManagerSetter.update)
+        {
+            cursorPlane.GetComponent<SpriteRenderer>().color =
+                cursor3d.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
+        }
     }
 }

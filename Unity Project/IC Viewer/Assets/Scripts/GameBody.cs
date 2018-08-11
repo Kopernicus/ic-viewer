@@ -45,6 +45,14 @@ public class GameBody : MonoBehaviour
         shadow.transform.position = new Vector3(transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, transform.position.z);
         ray.transform.position = new Vector3(gameObject.transform.position.x, (shadow.transform.position.y + gameObject.transform.position.y) / 2f, gameObject.transform.position.z);
         ray.transform.localScale = new Vector3(3f, (gameObject.transform.position.y - shadow.transform.position.y) * 100f, 0);
+
+        if(EditorManager.colorManagerSetter.update)
+        {
+            nameText.color = ColorManager.thirdColor;
+
+            ray.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
+            shadow.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
+        }
     }
 
     public static void DestroyAllBodies()

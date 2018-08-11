@@ -85,5 +85,14 @@ public class DisplaySOI : MonoBehaviour
 			t.rotation = Quaternion.identity;
 			t.gameObject.SetActive(ShowSOI);
 		}
-	}
+
+        if (EditorManager.colorManagerSetter.update)
+        {
+            foreach (LineRenderer lineRenderer in transform.GetComponentsInChildren<LineRenderer>())
+            {
+                lineRenderer.startColor = lineRenderer.endColor = ColorManager.mainColor;
+            }
+        }
+
+    }
 }
