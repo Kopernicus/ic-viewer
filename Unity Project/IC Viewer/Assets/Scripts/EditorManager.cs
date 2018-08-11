@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using SFB;
 using UnityEngine;
 
@@ -7,6 +8,19 @@ public class EditorManager : MonoBehaviour
 {
     public Sprite testBodySprite, shadowSprite, raySprite;
 
+    public const String DatabaseUrl = "https://rawgit.com/Kopernicus/interstellar-consortium/master/database.json";
+
+    void Start()
+    {
+        // Autoload the online version of the database
+        WWW www = new WWW(DatabaseUrl);
+        while (!www.isDone)
+        {
+            // Wait until the download finished
+        }
+        LoadBodies(www.text);
+    }
+    
     public void LoadBodies(String json)
     {
         GameBody.DestroyAllBodies();
