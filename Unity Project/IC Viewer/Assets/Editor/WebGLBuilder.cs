@@ -10,7 +10,7 @@ public class WebGLBuilder
 	/// </summary>
 	public static void Build() 
 	{
-		const String pathToDeploy = "build/";
+		const String pathToDeploy = "build/ic-viewer";
 		
 		// Collect all scenes that should get built
 		String[] scenes = new String[SceneManager.sceneCountInBuildSettings];
@@ -19,6 +19,14 @@ public class WebGLBuilder
 			scenes[i] = SceneUtility.GetScenePathByBuildIndex(i);
 		}
 
-		BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);      
+		BuildPipeline.BuildPlayer(new BuildPlayerOptions()
+		{
+			assetBundleManifestPath = "ic-viewer",
+			locationPathName = pathToDeploy,
+			options = BuildOptions.None,
+			scenes = scenes,
+			target = BuildTarget.WebGL,
+			targetGroup = BuildTargetGroup.WebGL
+		});   
 	}
 }
