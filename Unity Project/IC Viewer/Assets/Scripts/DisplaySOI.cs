@@ -58,8 +58,8 @@ public class DisplaySOI : MonoBehaviour
 		lineRenderer.positionCount = 36;
 		lineRenderer.widthMultiplier = 0.05f;
 		lineRenderer.useWorldSpace = false;
-		lineRenderer.startColor = lineRenderer.endColor = new Color32(58, 162, 239, 255);
-		if (Body.bodies.Any(b => b != gameObject &&
+		lineRenderer.startColor = lineRenderer.endColor = ColorManager.mainColor;//new Color32(58, 162, 239, 255);
+        if (Body.bodies.Any(b => b != gameObject &&
 			Vector3.Distance(b.transform.position, transform.position) <
 			SphereOfInfluence + b.GetComponent<DisplaySOI>().SphereOfInfluence))
 		{

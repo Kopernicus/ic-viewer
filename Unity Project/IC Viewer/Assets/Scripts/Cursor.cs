@@ -21,7 +21,8 @@ public class Cursor : MonoBehaviour
         cursor3d.transform.SetParent(cursor.transform);
         cursor3d.transform.localPosition = new Vector3(0, 0.3f, 0);
 
-        Color cursorColor = new Color(0f, 0.5f, 1f, 1f);
+        Color cursorColor;
+        cursorColor = ColorManager.secondaryColor; //new Color(0f, 0.5f, 1f, 1f);
         cursorPlane.transform.eulerAngles = new Vector3(90, 0, 0);
         SpriteRenderer cpsr = cursorPlane.AddComponent<SpriteRenderer>();
         cpsr.sprite = cursorPlaneSprite;

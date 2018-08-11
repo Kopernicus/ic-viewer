@@ -240,6 +240,10 @@ MonoBehaviour:
   testBodySprite: {fileID: 21300000, guid: 44a7a9cc5375f2d48bd2546ef72be66e, type: 3}
   shadowSprite: {fileID: 21300000, guid: 41ad3f520961d554d8faa7e04fcef204, type: 3}
   raySprite: {fileID: 21300000, guid: cb9387f45f1e23a49b7f267545ca9986, type: 3}
+  mainColor: {r: 0.8392157, g: 0.2784314, b: 0, a: 0}
+  secondaryColor: {r: 0, g: 0.22352941, b: 0.5803922, a: 0}
+  thirdColor: {r: 1, g: 0, b: 0, a: 0}
+  forceRuntimeUpdate: 1
 --- !u!1 &448712201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1098,6 @@ MonoBehaviour:
   moveSpeed: 20
   maxAngle: 75
   planeLevel: 0
-  angle: {x: 0, y: 0, z: 0}
 --- !u!114 &1829595889
 MonoBehaviour:
   m_ObjectHideFlags: 0

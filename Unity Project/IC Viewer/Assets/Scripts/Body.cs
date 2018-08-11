@@ -39,7 +39,7 @@ public class Body
 
             SpriteRenderer srps = ps.AddComponent<SpriteRenderer>();
             srps.sprite = shadowSprite;
-            srps.color = new Color(1f, 0.5f, 0f, 1f);
+            srps.color = ColorManager.secondaryColor; //new Color(1f, 0.5f, 0f, 1f);
 
             ps.transform.position = new Vector3(go.transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, go.transform.position.z);
             ps.transform.eulerAngles = new Vector3(90, 0, 0);
@@ -53,7 +53,7 @@ public class Body
 
             SpriteRenderer srpr = pr.AddComponent<SpriteRenderer>();
             srpr.sprite = raySprite;
-            srpr.color = new Color(1f, 0.5f, 0f, 1f);
+            srpr.color = ColorManager.secondaryColor; //new Color(1f, 0.5f, 0f, 1f);
 
             pr.transform.position = new Vector3(go.transform.position.x, (go.transform.position.y - ps.transform.position.y) / 2f, go.transform.position.z);
             gb.ray = pr;

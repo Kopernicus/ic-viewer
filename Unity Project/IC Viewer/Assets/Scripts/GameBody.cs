@@ -21,8 +21,8 @@ public class GameBody : MonoBehaviour
 
         Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
         nameText.font = ArialFont;
-        nameText.material = ArialFont.material;
-        nameText.color = new Color(0.847f, 0.847f, 0.847f, 1);
+        nameText.material = ArialFont.material;       
+        nameText.color = ColorManager.thirdColor; //new Color(0.847f, 0.847f, 0.847f, 1);
         nameText.resizeTextForBestFit = true;
 
         
