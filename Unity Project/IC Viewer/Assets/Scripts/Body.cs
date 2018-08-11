@@ -39,7 +39,7 @@ public class Body
             srps.sprite = shadowSprite;
             srps.color = new Color(1f, 0.5f, 0f, 1f);
 
-            ps.transform.position = new Vector3(go.transform.position.x, 0, go.transform.position.z);
+            ps.transform.position = new Vector3(go.transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, go.transform.position.z);
             ps.transform.eulerAngles = new Vector3(90, 0, 0);
 
             gb.shadow = ps;

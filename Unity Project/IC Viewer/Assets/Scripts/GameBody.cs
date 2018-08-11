@@ -9,7 +9,12 @@ public class GameBody : MonoBehaviour
     private void Update()
     {
         transform.rotation = Camera.main.transform.rotation;
-        //Debug.DrawLine(transform.position, shadow.transform.position, new Color(1f, 0.5f, 0f, 1f));
+
+        ray.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.y * 360f, 0);
+        //ray.transform.position = new Vector3(gameObject.transform.position.x, (gameObject.transform.position.y - shadow.transform.position.y) / 2f, gameObject.transform.position.z);
+        //ray.transform.localScale = new Vector3(3f, (gameObject.transform.position.y - shadow.transform.position.y) * 100f, 0);
+
+        shadow.transform.position = new Vector3(transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, transform.position.z);
     }
 
     public static void DestroyAllBodies()
