@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
 
     private Camera c;
 
-    public Vector3 angle;
+    public static Vector3 angle;
 
     private void Start()
     {

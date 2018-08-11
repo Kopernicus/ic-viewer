@@ -39,4 +39,12 @@ public class EditorManager : MonoBehaviour
     {
         DisplaySOI.ShowSOI = !DisplaySOI.ShowSOI;
     }
+
+    public static void VoidTemporaryGameObject()
+    {
+        foreach(Transform c in GameObject.Find("Temporary").transform)
+        {
+            Destroy(c.gameObject);
+        }
+    }
 }
