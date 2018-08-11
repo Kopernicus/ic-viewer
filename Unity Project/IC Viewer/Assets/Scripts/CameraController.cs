@@ -5,11 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
-
-    public Sprite cursorPlaneSprite, cursor3dPositionSprite, cursor3dArrowSprite;
-    public GameObject cursor, cursorPlane, cursor3d;
-    public float cursorSize;
-
     //Please leave for the test,
     //'cause i've an Azerty keyboard so i need to change them lol
     public KeyCode
@@ -26,43 +21,24 @@ public class CameraController : MonoBehaviour
 
     public float planeLevel = 0.0f;
 
-    public Vector3 centerPoint;
+    public static Vector3 centerPoint;
     Vector3 truePos;
 
     private Camera c;
+
+    public Vector3 angle;
 
     private void Start()
     {
         c = GetComponent<Camera>();
         centerPoint = new Vector3(0, planeLevel, -3);
         c.transform.LookAt(centerPoint);
-
-        #region Cursor
-        cursor = new GameObject("Map Cursor");
-
-        cursorPlane = new GameObject("Map Cursor Plane");
-        cursor3d = new GameObject("Map Cursor 3D");
-
-        cursorPlane.transform.SetParent(cursor.transform);
-        cursor3d.transform.SetParent(cursor.transform);
-        cursor3d.transform.localPosition = new Vector3(0, 0.3f, 0);
-
-        Color cursorColor = new Color(0f, 0.5f, 1f, 1f);
-        cursorPlane.transform.eulerAngles = new Vector3(90, 0, 0);
-        SpriteRenderer cpsr = cursorPlane.AddComponent<SpriteRenderer>();
-        cpsr.sprite = cursorPlaneSprite;
-        cpsr.color = cursorColor;
-
-        SpriteRenderer c3sr = cursor3d.AddComponent<SpriteRenderer>();
-        c3sr.sprite = cursor3dPositionSprite;
-        c3sr.color = cursorColor;
-
-
-        #endregion
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        angle = c.transform.rotation.eulerAngles;
+
         #region Scrolling
         //Zooming
         float scrl = Input.GetAxis("Mouse ScrollWheel");
@@ -80,25 +56,24 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetMouseButton(2))
         {
-            cursor3d.GetComponent<SpriteRenderer>().sprite = cursor3dArrowSprite;
             float yPos = my * mouseSensivity * Time.deltaTime;
             c.transform.position = new Vector3(c.transform.position.x, c.transform.position.y + yPos, c.transform.position.z);
             planeLevel += yPos;
-        }
-
-        else
-        {
-            cursor3d.GetComponent<SpriteRenderer>().sprite = cursor3dPositionSprite;
         }
         #endregion
 
         #region Rotation
         if (Input.GetMouseButton(1))
         {
-            
-
+            //Sides
             transform.RotateAround(centerPoint, Vector3.up, mx * mouseSensivity * Time.deltaTime);
-            transform.RotateAround(centerPoint, transform.right, my * mouseSensivity * Time.deltaTime);
+
+            //Height
+            /*if (angle.x > -maxAngle + 5 || angle.x < maxAngle - 5)
+            {*/
+                transform.RotateAround(centerPoint, transform.right, my * mouseSensivity * Time.deltaTime);
+            //}
+            
         }      
         #endregion
 
@@ -125,40 +100,12 @@ public class CameraController : MonoBehaviour
         }
         #endregion
 
-        //Debug.Log("Clamped: " + ClampAngle(-maxAngle, maxAngle, transform.rotation.x * 360f));
-        //Debug.Log(transform.rotation.x * 360f);
+        #region Max Rotation
+        
+        #endregion
 
         centerPoint.y = planeLevel;
-        cursor.transform.localScale = new Vector3(cursorSize, cursorSize, cursorSize);
-
-        cursor.transform.eulerAngles = new Vector3(0, c.transform.rotation.eulerAngles.y, 0);
-
-        cursor.transform.position = centerPoint;
-        gameObject.transform.Translate(-gameObject.transform.forward * scrl * Time.deltaTime * scrollSensivity);
-    }
-
-    private float ClampAngle(float minAngle, float maxAngle, float angle)
-    {
-        float a = 0.0f;
-
-        //Minimum
-        if(angle < minAngle)
-        {
-            a = minAngle;
-        }
         
-        //Maximum
-        if(angle > maxAngle)
-        {
-            a = maxAngle;
-        }
-
-        //If the angle is good
-        if(angle >= minAngle && angle <= maxAngle)
-        {
-            a = angle;
-        }
-
-        return a;
+        gameObject.transform.Translate(-gameObject.transform.forward * scrl * Time.deltaTime * scrollSensivity);
     }
 }

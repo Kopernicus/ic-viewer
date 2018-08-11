@@ -11,7 +11,6 @@ public class GameBody : MonoBehaviour
 
     private Text nameText;
 
-
     private void Awake()
     {
         GameObject textGO = new GameObject(gameObject.name + "Name Text");

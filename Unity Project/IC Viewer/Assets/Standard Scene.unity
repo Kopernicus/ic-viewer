@@ -940,6 +940,7 @@ GameObject:
   - component: {fileID: 1829595884}
   - component: {fileID: 1829595883}
   - component: {fileID: 1829595888}
+  - component: {fileID: 1829595889}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1028,6 +1029,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d68cb6ebc06ec4c87a2bd1b6b6507c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forward: 119
+  left: 97
+  backward: 115
+  right: 100
+  scrollSensivity: 100
+  mouseSensivity: 80
+  moveSpeed: 20
+  maxAngle: 75
+  planeLevel: 0
+  angle: {x: 0, y: 0, z: 0}
+--- !u!114 &1829595889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1829595882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb47c02e32a0f944581114adc2a16326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cursorPlaneSprite: {fileID: 21300000, guid: cf324491ea11bd44e99c7d34696bc726, type: 3}
   cursor3dPositionSprite: {fileID: 21300000, guid: b9eb94b23ce748a428ec165c559ca485,
     type: 3}
@@ -1036,14 +1058,4 @@ MonoBehaviour:
   cursor: {fileID: 0}
   cursorPlane: {fileID: 0}
   cursor3d: {fileID: 0}
-  cursorSize: 2
-  forward: 122
-  left: 113
-  backward: 115
-  right: 100
-  scrollSensivity: 100
-  mouseSensivity: 80
-  moveSpeed: 20
-  maxAngle: 75
-  planeLevel: 0
-  centerPoint: {x: 0, y: 0, z: 0}
+  cursorSize: 3
