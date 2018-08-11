@@ -28,6 +28,8 @@ public class Body
 
             go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
+            go.AddComponent<DisplaySOI>().SphereOfInfluence = b.soi;
+
             SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
             sr.sprite = testBodySprite;
 

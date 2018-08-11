@@ -20,4 +20,9 @@ public class EditorManager : MonoBehaviour
             go.transform.SetParent(tempParentGo.transform);
         }
     }
+
+    public void ToggleSOIDisplay()
+    {
+        DisplaySOI.ShowSOI = !DisplaySOI.ShowSOI;
+    }
 }
