@@ -36,7 +36,7 @@ public class GameBody : MonoBehaviour
     {
         transform.rotation = Camera.main.transform.rotation;
 
-        ray.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.y * 360f, 0);
+        ray.transform.eulerAngles = new Vector3(0, Camera.main.transform.rotation.eulerAngles.y, 0);
 
         nameText.rectTransform.anchoredPosition = new Vector3(gameObject.transform.position.x + 2, gameObject.transform.position.y + -1.4f);
         nameText.gameObject.transform.position = new Vector3(nameText.gameObject.transform.position.x, nameText.gameObject.transform.position.y, gameObject.transform.position.z);

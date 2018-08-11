@@ -66,15 +66,26 @@ public class CameraController : MonoBehaviour
         #region Scrolling
         //Zooming
         float scrl = Input.GetAxis("Mouse ScrollWheel");
-        planeLevel += scrl * scrollSensivity * Time.deltaTime;
+
+        //c.transform.position += c.transform.forward * scrollSensivity * Time.deltaTime * scrl;
+
+        /*planeLevel += scrl * scrollSensivity * Time.deltaTime;
 
         centerPoint = new Vector3(centerPoint.x, planeLevel, centerPoint.z);
         c.transform.position = new Vector3(transform.position.x, transform.position.y + scrl * scrollSensivity * Time.deltaTime, transform.position.z);
+        */
 
-        if(scrl != 0)
+        float mx = Input.GetAxis("Mouse X");
+        float my = Input.GetAxis("Mouse Y");
+
+        if (Input.GetMouseButton(2))
         {
             cursor3d.GetComponent<SpriteRenderer>().sprite = cursor3dArrowSprite;
+            float yPos = my * mouseSensivity * Time.deltaTime;
+            c.transform.position = new Vector3(c.transform.position.x, c.transform.position.y + yPos, c.transform.position.z);
+            planeLevel += yPos;
         }
+
         else
         {
             cursor3d.GetComponent<SpriteRenderer>().sprite = cursor3dPositionSprite;
@@ -84,8 +95,7 @@ public class CameraController : MonoBehaviour
         #region Rotation
         if (Input.GetMouseButton(1))
         {
-            float mx = Input.GetAxis("Mouse X");
-            float my = Input.GetAxis("Mouse Y");
+            
 
             transform.RotateAround(centerPoint, Vector3.up, mx * mouseSensivity * Time.deltaTime);
             transform.RotateAround(centerPoint, transform.right, my * mouseSensivity * Time.deltaTime);
@@ -118,10 +128,13 @@ public class CameraController : MonoBehaviour
         //Debug.Log("Clamped: " + ClampAngle(-maxAngle, maxAngle, transform.rotation.x * 360f));
         //Debug.Log(transform.rotation.x * 360f);
 
+        centerPoint.y = planeLevel;
         cursor.transform.localScale = new Vector3(cursorSize, cursorSize, cursorSize);
 
-        cursor.transform.eulerAngles = new Vector3(0, c.transform.rotation.y * 360f, 0);
+        cursor.transform.eulerAngles = new Vector3(0, c.transform.rotation.eulerAngles.y, 0);
+
         cursor.transform.position = centerPoint;
+        gameObject.transform.Translate(-gameObject.transform.forward * scrl * Time.deltaTime * scrollSensivity);
     }
 
     private float ClampAngle(float minAngle, float maxAngle, float angle)
