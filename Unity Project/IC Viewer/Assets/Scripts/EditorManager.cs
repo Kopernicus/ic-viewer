@@ -1,34 +1,23 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using SFB;
 using UnityEngine;
 
 public class EditorManager : MonoBehaviour
 {
     public Sprite testBodySprite, shadowSprite, raySprite;
 
-    private string path;
-
-    private void OnGUI()
+    public void LoadBodies(String json)
     {
-        GUILayout.BeginVertical();
+        GameBody.DestroyAllBodies();
 
-        GUILayout.Label("JSON File path", GUILayout.Width(220));
-        path = GUILayout.TextField(path, GUILayout.Width(220));
-        GUILayout.Label("");
+        BodyList bl = JSONLoader.LoadStars(json);
+        List<GameObject> gos = Body.LoadBodiesInGame(bl, testBodySprite, shadowSprite, raySprite);
 
-        if(GUILayout.Button("Load Stars", GUILayout.Width(220)))
+        GameObject tempParentGo = GameObject.Find("Bodies");
+        foreach (GameObject go in gos)
         {
-            GameBody.DestroyAllBodies();
-
-            BodyList bl = JSONLoader.LoadStarsInFile(path);
-            List<GameObject> gos = Body.LoadBodiesInGame(bl, testBodySprite, shadowSprite, raySprite);
-
-            GameObject tempParentGo = GameObject.Find("Bodies");
-            foreach (GameObject go in gos)
-            {
-                go.transform.SetParent(tempParentGo.transform);
-            }
+            go.transform.SetParent(tempParentGo.transform);
         }
-        GUILayout.EndVertical();
     }
 }

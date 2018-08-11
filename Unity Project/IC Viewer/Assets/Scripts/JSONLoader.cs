@@ -30,12 +30,8 @@ public class JSONLoader : MonoBehaviour
         }
     }
 
-    public static BodyList LoadStarsInFile(string path)
+    public static BodyList LoadStars(string json)
     {
-        using (StreamReader stream = new StreamReader(path))
-        {
-            string json = stream.ReadToEnd();
-            return bodyList = JsonUtility.FromJson<BodyList>(json);
-        }
+        return bodyList = JsonUtility.FromJson<BodyList>(json);
     }
 }
