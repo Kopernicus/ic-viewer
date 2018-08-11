@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class WebGLBuilder 
@@ -13,9 +14,9 @@ public class WebGLBuilder
 		
 		// Collect all scenes that should get built
 		String[] scenes = new String[SceneManager.sceneCountInBuildSettings];
-		for (Int32 i = 0; i < scenes.Length; i++)
+		for (Int32 i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
 		{
-			scenes[i] = SceneManager.GetSceneByBuildIndex(i).path;
+			scenes[i] = SceneUtility.GetScenePathByBuildIndex(i);
 		}
 
 		BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);      
