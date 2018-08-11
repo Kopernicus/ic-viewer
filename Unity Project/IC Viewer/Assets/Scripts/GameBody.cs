@@ -20,6 +20,8 @@ public class GameBody : MonoBehaviour
 
             foreach (GameObject g in gos)
             {
+                Destroy(g.GetComponent<GameBody>().shadow);
+                Destroy(g.GetComponent<GameBody>().ray);
                 Destroy(g);
             }
         }
@@ -31,6 +33,8 @@ public class GameBody : MonoBehaviour
         {
             foreach(GameObject g in GameObjectBodies)
             {
+                Destroy(g.GetComponent<GameBody>().shadow);
+                Destroy(g.GetComponent<GameBody>().ray);
                 Destroy(g);
             }
         }
