@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EditorManager : MonoBehaviour
 {
-    public Sprite testBodySprite;
+    public Sprite testBodySprite, shadowSprite, raySprite;
 
     private string path;
 
@@ -21,12 +21,11 @@ public class EditorManager : MonoBehaviour
             GameBody.DestroyAllBodies();
 
             BodyList bl = JSONLoader.LoadStarsInFile(path);
-            List<GameObject> gos = Body.LoadBodiesInGame(bl, testBodySprite);
+            List<GameObject> gos = Body.LoadBodiesInGame(bl, testBodySprite, shadowSprite, raySprite);
 
             GameObject tempParentGo = GameObject.Find("Bodies");
             foreach (GameObject go in gos)
             {
-                go.AddComponent<GameBody>();
                 go.transform.SetParent(tempParentGo.transform);
             }
         }

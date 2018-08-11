@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class GameBody : MonoBehaviour
 {
+    public GameObject shadow, ray;
+
     private void Update()
     {
         transform.rotation = Camera.main.transform.rotation;
+        //Debug.DrawLine(transform.position, shadow.transform.position, new Color(1f, 0.5f, 0f, 1f));
     }
 
     public static void DestroyAllBodies()
@@ -32,4 +35,6 @@ public class GameBody : MonoBehaviour
             }
         }
     }
+
+    
 }
