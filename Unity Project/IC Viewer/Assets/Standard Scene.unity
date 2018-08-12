@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0000132159485, g: 0.0028079145, b: 0.005231972, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 959552446}
   - component: {fileID: 959552448}
   - component: {fileID: 959552447}
+  - component: {fileID: 959552449}
   m_Layer: 5
   m_Name: TimeText
   m_TagString: Untagged
@@ -636,6 +637,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 959552445}
+--- !u!114 &959552449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 959552445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfaf6883101bb45eb928a45b04cfe680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Format: 'HH : mm : ss'
 --- !u!1 &1134486622
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +844,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: i know it's not working
+  m_Text: "i know it's not working\nor maybe it is? \nWho knows....."
 --- !u!222 &1329069725
 CanvasRenderer:
   m_ObjectHideFlags: 0
