@@ -48,6 +48,7 @@ public class Logger : MonoBehaviour
     void Start()
     {
         _display = GetComponent<InputField>();
+        _display.textComponent.supportRichText = UseRichText;
         if (_instance != null)
         {
             Destroy(this);
