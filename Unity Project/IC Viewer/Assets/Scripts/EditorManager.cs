@@ -22,12 +22,16 @@ public class EditorManager : MonoBehaviour
 
     public const String DatabaseUrl = "https://rawgit.com/Kopernicus/interstellar-consortium/master/database.json";
 
+    public float minFadeDistance = 0.2f, maxFadeDistance = 4.0f;
+
     void Start()
     {
         Body.bodies = new List<GameObject>();
         Body.starSprite = testBodySprite;
         Body.blackHoleSprite = shadowSprite;
         Body.pixelSprite = raySprite;
+
+      
 
         colorManagerSetter = gameObject.AddComponent<ColorManagerSetter>(
             //mainColor,      //0.839f, 0.278f, 0, 1

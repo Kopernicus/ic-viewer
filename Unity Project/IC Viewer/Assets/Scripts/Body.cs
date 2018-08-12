@@ -22,6 +22,8 @@ public class Body : MonoBehaviour
 
     public TextMeshProUGUI nameText;
 
+    
+
     private void Start()
     {
         if (!GameObject.Find("Bodies"))
@@ -115,6 +117,21 @@ public class Body : MonoBehaviour
         planeShadow.transform.position = new Vector3(transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, transform.position.z);
         planeRay.transform.position = new Vector3(gameObject.transform.position.x, (planeShadow.transform.position.y + gameObject.transform.position.y) / 2f, gameObject.transform.position.z);
         planeRay.transform.localScale = new Vector3(3f, (gameObject.transform.position.y - planeShadow.transform.position.y) * 100f, 0);
+
+
+        if ((
+            Vector3.Distance(planeShadow.transform.position, gameObject.transform.position) < GameObject.Find("Manager").GetComponent<EditorManager>().minFadeDistance)
+            || (Vector3.Distance(planeShadow.transform.position, gameObject.transform.position) > GameObject.Find("Manager").GetComponent<EditorManager>().maxFadeDistance))
+        {
+            planeShadow.SetActive(false);
+            planeRay.SetActive(false);
+        }
+        else
+        {
+            planeShadow.SetActive(true);
+            planeRay.SetActive(true);
+        }
+
 
         if (EditorManager.colorManagerSetter.update)
         {
