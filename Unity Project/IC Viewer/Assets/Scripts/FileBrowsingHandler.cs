@@ -49,5 +49,6 @@ public class FileBrowsingHandler : MonoBehaviour, IPointerDownHandler
 		WWW loader = new WWW(url);
 		yield return loader;
 		manager.LoadBodies(loader.text);
+		Logger.Info("Imported uploaded star database");
 	}
 }

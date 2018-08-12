@@ -35,6 +35,7 @@ public class EditorManager : MonoBehaviour
             // Wait until the download finished
         }
         LoadBodies(www.text);
+        Logger.Info("Imported default star database");
     }
 
     public void Update()
@@ -63,6 +64,7 @@ public class EditorManager : MonoBehaviour
     public void ToggleSOIDisplay()
     {
         DisplaySOI.ShowSOI = !DisplaySOI.ShowSOI;
+        Logger.Info("Toggled SOI Display. New state: " + DisplaySOI.ShowSOI);
     }
 
     public static void VoidTemporaryGameObject()

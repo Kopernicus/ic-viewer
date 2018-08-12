@@ -65,6 +65,9 @@ public class DisplaySOI : MonoBehaviour
 		{
 			// The two SOIs are intersecting, color them red
 			lineRenderer.startColor = lineRenderer.endColor = Color.red;
+			
+			// Log a warning
+			Logger.Warning("The SOI of " + name + " is intersecting with another star!");
 		}
 		lineRenderer.material = Material;
 		lineRenderer.loop = true;
