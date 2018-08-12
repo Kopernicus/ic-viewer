@@ -81,6 +81,12 @@ public class EditorManager : MonoBehaviour
         Logger.Info("Toggled SOI Display. New state: " + DisplaySOI.ShowSOI);
     }
 
+    public void ToggleLogDisplay()
+    {
+        Logger.Instance.gameObject.SetActive(!Logger.Instance.gameObject.activeSelf);
+        Logger.Info("Toggled Log Display. New state: " + Logger.Instance.gameObject.activeSelf);
+    }
+
     public static void VoidTemporaryGameObject()
     {
         foreach(Transform c in GameObject.Find("Temporary").transform)
