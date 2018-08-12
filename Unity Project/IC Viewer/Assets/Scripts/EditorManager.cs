@@ -23,6 +23,11 @@ public class EditorManager : MonoBehaviour
 
     void Start()
     {
+        Body.bodies = new List<GameObject>();
+        Body.starSprite = testBodySprite;
+        Body.blackHoleSprite = shadowSprite;
+        Body.pixelSprite = raySprite;
+
         colorManagerSetter = gameObject.AddComponent<ColorManagerSetter>(
             //mainColor,      //0.839f, 0.278f, 0, 1
             //secondaryColor, //0, 0.223f, 0.580f, 1
@@ -49,13 +54,13 @@ public class EditorManager : MonoBehaviour
 
     public void LoadBodies(String json)
     {
-        GameBody.DestroyAllBodies();
+        Body.DestroyAllBodies();
 
         BodyList bl = JSONLoader.LoadStars(json);
-        List<GameObject> gos = DataBody.LoadBodiesInGame(bl, testBodySprite, shadowSprite, raySprite);
+        DataBody.LoadBodiesInGame(bl);
 
         GameObject tempParentGo = GameObject.Find("Bodies");
-        foreach (GameObject go in gos)
+        foreach (GameObject go in Body.bodies)
         {
             go.transform.SetParent(tempParentGo.transform);
         }
