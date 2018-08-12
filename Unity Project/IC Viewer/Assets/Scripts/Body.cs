@@ -171,8 +171,12 @@ public class Body : MonoBehaviour
             }
 
             nameText.color = c;
-            planeRay.GetComponent<SpriteRenderer>().color = c2;
-            planeShadow.GetComponent<SpriteRenderer>().color = c2;
+
+            if (dplane < EditorManager.minFadeDistanceStart || dplane < EditorManager.maxFadeDistanceStart)
+            {
+                planeRay.GetComponent<SpriteRenderer>().color = c2;
+                planeShadow.GetComponent<SpriteRenderer>().color = c2;
+            }
         }
 
 
