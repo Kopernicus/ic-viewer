@@ -55,6 +55,7 @@ public class EditorManager : MonoBehaviour
     public void LoadBodies(String json)
     {
         Body.DestroyAllBodies();
+        Body.bodies.Clear();
 
         BodyList bl = JSONLoader.LoadStars(json);
         DataBody.LoadBodiesInGame(bl);
