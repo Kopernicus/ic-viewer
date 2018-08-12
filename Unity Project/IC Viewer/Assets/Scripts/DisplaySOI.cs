@@ -94,6 +94,13 @@ public class DisplaySOI : MonoBehaviour
             foreach (LineRenderer lineRenderer in transform.GetComponentsInChildren<LineRenderer>())
             {
                 lineRenderer.startColor = lineRenderer.endColor = ColorManager.mainColor;
+				if (Body.bodies.Any(b => b != gameObject &&
+					Vector3.Distance(b.transform.position, transform.position) <
+					SphereOfInfluence + b.GetComponent<DisplaySOI>().SphereOfInfluence))
+				{
+					// The two SOIs are intersecting, color them red
+					lineRenderer.startColor = lineRenderer.endColor = Color.red;
+				}
             }
         }
 
