@@ -27,7 +27,8 @@ public class DataBody
 
             g.transform.position = new Vector3(b.position.x, b.position.z, b.position.y);
             g.transform.localScale = Vector3.one * 0.2f;
-            g.AddComponent<DisplaySOI>();
+            DisplaySOI soi = g.AddComponent<DisplaySOI>();
+            soi.SphereOfInfluence = db.soi;
 
             SpriteRenderer sr = g.AddComponent<SpriteRenderer>();
             b.spriteRenderer = sr;
