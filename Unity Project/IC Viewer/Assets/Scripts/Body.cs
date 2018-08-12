@@ -118,19 +118,7 @@ public class Body : MonoBehaviour
         planeRay.transform.position = new Vector3(gameObject.transform.position.x, (planeShadow.transform.position.y + gameObject.transform.position.y) / 2f, gameObject.transform.position.z);
         planeRay.transform.localScale = new Vector3(3f, (gameObject.transform.position.y - planeShadow.transform.position.y) * 100f, 0);
 
-
-        if ((
-            Vector3.Distance(planeShadow.transform.position, gameObject.transform.position) < GameObject.Find("Manager").GetComponent<EditorManager>().minFadeDistance)
-            || (Vector3.Distance(planeShadow.transform.position, gameObject.transform.position) > GameObject.Find("Manager").GetComponent<EditorManager>().maxFadeDistance))
-        {
-            planeShadow.SetActive(false);
-            planeRay.SetActive(false);
-        }
-        else
-        {
-            planeShadow.SetActive(true);
-            planeRay.SetActive(true);
-        }
+        
 
 
         if (EditorManager.colorManagerSetter.update)
@@ -139,6 +127,28 @@ public class Body : MonoBehaviour
 
             planeRay.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
             planeShadow.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
+        }
+
+
+        float d = Vector3.Distance(planeShadow.transform.position, gameObject.transform.position);
+        if (d < EditorManager.minFadeDistanceStart || d > EditorManager.maxFadeDistanceStart)
+        {
+            Color c = ColorManager.secondaryColor;
+
+            //if it's close from body
+            if (d < EditorManager.minFadeDistanceStart)
+            {
+                c.a = (d - EditorManager.minFadeDistanceEnd) / (EditorManager.minFadeDistanceStart - EditorManager.minFadeDistanceEnd);
+            }
+
+            //if it's far from body
+            if (d > EditorManager.maxFadeDistanceStart)
+            {
+                c.a = (d - EditorManager.maxFadeDistanceEnd) / (EditorManager.maxFadeDistanceStart - EditorManager.maxFadeDistanceEnd);
+            }
+
+            planeRay.GetComponent<SpriteRenderer>().color = c;
+            planeShadow.GetComponent<SpriteRenderer>().color = c;
         }
     }
 

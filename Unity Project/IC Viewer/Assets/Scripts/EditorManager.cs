@@ -16,13 +16,14 @@ public class EditorManager : MonoBehaviour
     public static ColorManagerSetter colorManagerSetter;
 
     public Color mainColor, secondaryColor, thirdColor;
-    public bool forceRuntimeUpdate = true;
+    private bool forceRuntimeUpdate = true;
 
     public Font globalFont;
 
     public const String DatabaseUrl = "https://rawgit.com/Kopernicus/interstellar-consortium/master/database.json";
 
-    public float minFadeDistance = 0.2f, maxFadeDistance = 4.0f;
+    public static float minFadeDistanceEnd = 0.2f, minFadeDistanceStart = 0.4f,
+                        maxFadeDistanceEnd = 4.0f, maxFadeDistanceStart = 3.5f;
 
     void Start()
     {
