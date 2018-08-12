@@ -64,6 +64,7 @@ public class Body : MonoBehaviour
         SpriteRenderer srps = planeShadow.AddComponent<SpriteRenderer>();
         srps.sprite = blackHoleSprite;
         srps.color = ColorManager.secondaryColor;
+        srps.sortingOrder = -2;
 
         planeShadow.transform.position = new Vector3(gameObject.transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, gameObject.transform.position.z);
         planeShadow.transform.eulerAngles = Vector3.right * 90f;
@@ -76,6 +77,7 @@ public class Body : MonoBehaviour
         SpriteRenderer srpr = planeRay.AddComponent<SpriteRenderer>();
         srpr.sprite = pixelSprite;
         srpr.color = ColorManager.secondaryColor;
+        srpr.sortingOrder = -2;
 
         planeRay.transform.position = new Vector3(gameObject.transform.position.x, (gameObject.transform.position.y - gameObject.transform.position.y) / 2f, gameObject.transform.position.z);
         //gameBody.ray = planeRay; //TO DO: DELETE PLANE RAY FROM GAMEBODY
