@@ -129,22 +129,44 @@ public class Body : MonoBehaviour
             planeShadow.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
         }
 
+        //Name fading
+        float dname = Vector3.Distance(nameText.gameObject.transform.position, Camera.main.gameObject.transform.position);
+        if (dname < EditorManager.minFadeDistanceStart * 5 || dname > EditorManager.maxFadeDistanceStart * 5)
+        {
+            Color c = ColorManager.thirdColor;
 
-        float d = Vector3.Distance(planeShadow.transform.position, gameObject.transform.position);
-        if (d < EditorManager.minFadeDistanceStart || d > EditorManager.maxFadeDistanceStart)
+            //if it's close from body
+            if (dname < EditorManager.minFadeDistanceStart * 5)
+            {
+                c.a = (dname - EditorManager.minFadeDistanceEnd * 5) / (EditorManager.minFadeDistanceStart * 5 - EditorManager.minFadeDistanceEnd * 5);
+            }
+
+            //if it's far from body
+            if (dname > EditorManager.maxFadeDistanceStart * 5)
+            {
+                c.a = (dname - EditorManager.maxFadeDistanceEnd * 5) / (EditorManager.maxFadeDistanceStart * 5 - EditorManager.maxFadeDistanceEnd * 5);
+            }
+
+            nameText.color = c;
+        }
+
+
+        //Ray / Shadow fading
+        float dplane = Vector3.Distance(planeShadow.transform.position, gameObject.transform.position);
+        if (dplane < EditorManager.minFadeDistanceStart || dplane > EditorManager.maxFadeDistanceStart)
         {
             Color c = ColorManager.secondaryColor;
 
             //if it's close from body
-            if (d < EditorManager.minFadeDistanceStart)
+            if (dplane < EditorManager.minFadeDistanceStart)
             {
-                c.a = (d - EditorManager.minFadeDistanceEnd) / (EditorManager.minFadeDistanceStart - EditorManager.minFadeDistanceEnd);
+                c.a = (dplane - EditorManager.minFadeDistanceEnd) / (EditorManager.minFadeDistanceStart - EditorManager.minFadeDistanceEnd);
             }
 
             //if it's far from body
-            if (d > EditorManager.maxFadeDistanceStart)
+            if (dplane > EditorManager.maxFadeDistanceStart)
             {
-                c.a = (d - EditorManager.maxFadeDistanceEnd) / (EditorManager.maxFadeDistanceStart - EditorManager.maxFadeDistanceEnd);
+                c.a = (dplane - EditorManager.maxFadeDistanceEnd) / (EditorManager.maxFadeDistanceStart - EditorManager.maxFadeDistanceEnd);
             }
 
             planeRay.GetComponent<SpriteRenderer>().color = c;

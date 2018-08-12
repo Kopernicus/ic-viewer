@@ -22,8 +22,12 @@ public class EditorManager : MonoBehaviour
 
     public const String DatabaseUrl = "https://rawgit.com/Kopernicus/interstellar-consortium/master/database.json";
 
-    public static float minFadeDistanceEnd = 0.2f, minFadeDistanceStart = 0.4f,
-                        maxFadeDistanceEnd = 4.0f, maxFadeDistanceStart = 3.5f;
+
+    /// <summary>
+    /// Values used for shadows / rays deseapering
+    /// </summary>
+    public static float minFadeDistanceEnd = 0.2f, minFadeDistanceStart = 0.8f,
+                        maxFadeDistanceEnd = 4.3f, maxFadeDistanceStart = 3f;
 
     void Start()
     {
