@@ -16,13 +16,18 @@ public class EditorManager : MonoBehaviour
     public static ColorManagerSetter colorManagerSetter;
 
     public Color mainColor, secondaryColor, thirdColor;
-    public bool forceRuntimeUpdate = true;
+    private bool forceRuntimeUpdate = true;
 
     public Font globalFont;
 
     public const String DatabaseUrl = "https://rawgit.com/Kopernicus/interstellar-consortium/master/database.json";
 
-    public float minFadeDistance = 0.2f, maxFadeDistance = 4.0f;
+
+    /// <summary>
+    /// Values used for shadows / rays deseapering
+    /// </summary>
+    public static float minFadeDistanceEnd = 0.2f, minFadeDistanceStart = 0.8f,
+                        maxFadeDistanceEnd = 4.3f, maxFadeDistanceStart = 3f;
 
     void Start()
     {
@@ -78,6 +83,12 @@ public class EditorManager : MonoBehaviour
     {
         DisplaySOI.ShowSOI = !DisplaySOI.ShowSOI;
         Logger.Info("Toggled SOI Display. New state: " + DisplaySOI.ShowSOI);
+    }
+
+    public void ToggleLogDisplay()
+    {
+        Logger.Instance.gameObject.SetActive(!Logger.Instance.gameObject.activeSelf);
+        Logger.Info("Toggled Log Display. New state: " + Logger.Instance.gameObject.activeSelf);
     }
 
     public static void VoidTemporaryGameObject()

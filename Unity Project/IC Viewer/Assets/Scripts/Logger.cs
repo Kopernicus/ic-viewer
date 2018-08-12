@@ -41,7 +41,7 @@ public class Logger : MonoBehaviour
     /// <summary>
     /// The global instance of the logging system
     /// </summary>
-    private static Logger _instance;
+    public static Logger Instance;
     
     /// <summary>
     /// Grab the UI element
@@ -50,13 +50,13 @@ public class Logger : MonoBehaviour
     {
         _display = GetComponent<TMP_InputField>();
         _display.textComponent.richText = UseRichText;
-        if (_instance != null)
+        if (Instance != null)
         {
             Destroy(this);
         }
         else
         {
-            _instance = this;
+            Instance = this;
         }
         
         // Say hello
@@ -71,12 +71,12 @@ public class Logger : MonoBehaviour
         UnityEngine.Debug.Log(message);
         #if UNITY_EDITOR
         String formatted = "[DBG] " + message;
-        if (_instance.UseRichText)
+        if (Instance.UseRichText)
         {
-            formatted = "<color=" + ColorToHex(_instance.ColorDebug) + ">" + formatted + "</color>";
+            formatted = "<color=" + ColorToHex(Instance.ColorDebug) + ">" + formatted + "</color>";
         }
 
-        _instance._display.text += formatted + "\n";
+        Instance._display.text += formatted + "\n";
         #endif
     }
 
@@ -87,12 +87,12 @@ public class Logger : MonoBehaviour
     {
         UnityEngine.Debug.Log(message);
         String formatted = "[LOG] " + message;
-        if (_instance.UseRichText)
+        if (Instance.UseRichText)
         {
-            formatted = "<color=" + ColorToHex(_instance.ColorInfo) + ">" + formatted + "</color>";
+            formatted = "<color=" + ColorToHex(Instance.ColorInfo) + ">" + formatted + "</color>";
         }
 
-        _instance._display.text += formatted + "\n";
+        Instance._display.text += formatted + "\n";
     }
 
     /// <summary>
@@ -102,12 +102,12 @@ public class Logger : MonoBehaviour
     {
         UnityEngine.Debug.LogWarning(message);
         String formatted = "[WRN] " + message;
-        if (_instance.UseRichText)
+        if (Instance.UseRichText)
         {
-            formatted = "<color=" + ColorToHex(_instance.ColorWarning) + ">" + formatted + "</color>";
+            formatted = "<color=" + ColorToHex(Instance.ColorWarning) + ">" + formatted + "</color>";
         }
 
-        _instance._display.text += formatted + "\n";
+        Instance._display.text += formatted + "\n";
     }
 
     /// <summary>
@@ -117,12 +117,12 @@ public class Logger : MonoBehaviour
     {
         UnityEngine.Debug.LogError(message);
         String formatted = "[ERR] " + message;
-        if (_instance.UseRichText)
+        if (Instance.UseRichText)
         {
-            formatted = "<color=" + ColorToHex(_instance.ColorError) + ">" + formatted + "</color>";
+            formatted = "<color=" + ColorToHex(Instance.ColorError) + ">" + formatted + "</color>";
         }
 
-        _instance._display.text += formatted + "\n";
+        Instance._display.text += formatted + "\n";
     }
 
     /// <summary>
