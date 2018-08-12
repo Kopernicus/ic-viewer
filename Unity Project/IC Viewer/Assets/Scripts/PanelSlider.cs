@@ -26,10 +26,6 @@ public class PanelSlider : MonoBehaviour
 	
 	void Update () 
 	{
-		Debug.Log("1: " + EnabledPanel.transform.position);
-		Debug.Log("2: " + _enabledPosition);
-		Debug.Log("3: " + DisabledPanel.transform.position);
-		Debug.Log("4: " + _disabledPostion);
 		if (!(EnabledPanel.transform.position == _enabledPosition))
 		{
 			EnabledPanel.transform.position = Vector3.Lerp(EnabledPanel.transform.position, _enabledPosition,
