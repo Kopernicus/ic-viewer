@@ -1942,7 +1942,7 @@ GameObject:
   - component: {fileID: 1363569663}
   - component: {fileID: 1363569662}
   m_Layer: 5
-  m_Name: Authors
+  m_Name: ShowPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
