@@ -129,28 +129,6 @@ public class Body : MonoBehaviour
             planeShadow.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
         }
 
-        //Name fading
-        float dname = Vector3.Distance(nameText.gameObject.transform.position, Camera.main.gameObject.transform.position);
-        if (dname < EditorManager.minFadeDistanceStart * 5 || dname > EditorManager.maxFadeDistanceStart * 5)
-        {
-            Color c = ColorManager.thirdColor;
-
-            //if it's close from body
-            if (dname < EditorManager.minFadeDistanceStart * 5)
-            {
-                c.a = (dname - EditorManager.minFadeDistanceEnd * 5) / (EditorManager.minFadeDistanceStart * 5 - EditorManager.minFadeDistanceEnd * 5);
-            }
-
-            //if it's far from body
-            if (dname > EditorManager.maxFadeDistanceStart * 5)
-            {
-                c.a = (dname - EditorManager.maxFadeDistanceEnd * 5) / (EditorManager.maxFadeDistanceStart * 5 - EditorManager.maxFadeDistanceEnd * 5);
-            }
-
-            nameText.color = c;
-        }
-
-
         //Ray / Shadow fading
         float dplane = Vector3.Distance(planeShadow.transform.position, gameObject.transform.position);
         if (dplane < EditorManager.minFadeDistanceStart || dplane > EditorManager.maxFadeDistanceStart)
@@ -172,6 +150,33 @@ public class Body : MonoBehaviour
             planeRay.GetComponent<SpriteRenderer>().color = c;
             planeShadow.GetComponent<SpriteRenderer>().color = c;
         }
+
+        //Name / Ray fading from far
+        float dname = Vector3.Distance(nameText.gameObject.transform.position, Camera.main.gameObject.transform.position);
+        if (dname < EditorManager.minFadeDistanceStart * 5 || dname > EditorManager.maxFadeDistanceStart * 5)
+        {
+            Color c = ColorManager.thirdColor;
+            Color c2 = ColorManager.secondaryColor;
+
+            //if it's close from camera
+            if (dname < EditorManager.minFadeDistanceStart * 5)
+            {
+                c.a = c2.a = (dname - EditorManager.minFadeDistanceEnd * 5) / (EditorManager.minFadeDistanceStart * 5 - EditorManager.minFadeDistanceEnd * 5);
+            }
+
+            //if it's far from camera
+            if (dname > EditorManager.maxFadeDistanceStart * 5)
+            {
+                c.a = c2.a = (dname - EditorManager.maxFadeDistanceEnd * 5) / (EditorManager.maxFadeDistanceStart * 5 - EditorManager.maxFadeDistanceEnd * 5);
+            }
+
+            nameText.color = c;
+            planeRay.GetComponent<SpriteRenderer>().color = c2;
+            planeShadow.GetComponent<SpriteRenderer>().color = c2;
+        }
+
+
+        
     }
 
     public static void ParseSpectralClass(Body b, out Sprite sprite, out Color color)
