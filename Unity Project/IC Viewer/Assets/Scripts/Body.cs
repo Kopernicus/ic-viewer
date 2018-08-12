@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using sc = SpectralClasses;
 
 [System.Serializable]
 public class Body
@@ -20,6 +21,7 @@ public class Body
             GameObject go = new GameObject(b.bodyName);
             gos.Add(go);
             GameBody gb = go.AddComponent<GameBody>();
+
 
             //go.transform.position = b.position;
 
@@ -65,5 +67,15 @@ public class Body
         bodies = gos;
         return gos;
     }
-
 }
+
+/*public enum SpectralClasses
+{  
+    M,
+    K,
+    G,
+    F,
+    A,
+    B,
+    O
+}*/
