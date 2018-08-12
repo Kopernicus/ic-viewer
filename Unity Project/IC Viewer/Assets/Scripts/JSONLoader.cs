@@ -6,7 +6,7 @@ using System.IO;
 [System.Serializable]
 public class BodyList
 {
-    public List<Body> bodies;
+    public List<DataBody> bodies;
 }
 
 public class JSONLoader : MonoBehaviour

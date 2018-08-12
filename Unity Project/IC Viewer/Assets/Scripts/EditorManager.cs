@@ -4,6 +4,7 @@ using System.Net;
 using SFB;
 using UnityEngine;
 
+
 public class EditorManager : MonoBehaviour
 {
     public Sprite testBodySprite, shadowSprite, raySprite;
@@ -15,6 +16,8 @@ public class EditorManager : MonoBehaviour
 
     public Color mainColor, secondaryColor, thirdColor;
     public bool forceRuntimeUpdate = true;
+
+    public Font globalFont;
 
     public const String DatabaseUrl = "https://rawgit.com/Kopernicus/interstellar-consortium/master/database.json";
 
@@ -48,7 +51,7 @@ public class EditorManager : MonoBehaviour
         GameBody.DestroyAllBodies();
 
         BodyList bl = JSONLoader.LoadStars(json);
-        List<GameObject> gos = Body.LoadBodiesInGame(bl, testBodySprite, shadowSprite, raySprite);
+        List<GameObject> gos = DataBody.LoadBodiesInGame(bl, testBodySprite, shadowSprite, raySprite);
 
         GameObject tempParentGo = GameObject.Find("Bodies");
         foreach (GameObject go in gos)

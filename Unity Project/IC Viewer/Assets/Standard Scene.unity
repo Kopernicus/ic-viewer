@@ -244,6 +244,7 @@ MonoBehaviour:
   secondaryColor: {r: 0, g: 0.22352941, b: 0.5803922, a: 1}
   thirdColor: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
   forceRuntimeUpdate: 1
+  globalFont: {fileID: 12800000, guid: 7b999b7928188cb428c0a1bb6d022b9a, type: 3}
 --- !u!1 &671884340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,8 +1152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d68cb6ebc06ec4c87a2bd1b6b6507c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forward: 119
-  left: 97
+  forward: 122
+  left: 113
   backward: 115
   right: 100
   scrollSensivity: 100
