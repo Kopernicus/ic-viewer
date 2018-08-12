@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using SFB;
@@ -34,11 +35,13 @@ public class EditorManager : MonoBehaviour
             /*thirdColor*/);    //0.502f, 0.502f, 0.502f, 1
 
         // Autoload the online version of the database
+        StartCoroutine(ImportDatabase());
+    }
+
+    private IEnumerator ImportDatabase()
+    {
         WWW www = new WWW(DatabaseUrl);
-        while (!www.isDone)
-        {
-            // Wait until the download finished
-        }
+        yield return www;
         LoadBodies(www.text);
         Logger.Info("Imported default star database");
     }
