@@ -66,16 +66,23 @@ public class EditorManager : MonoBehaviour
 
     public void LoadBodies(String json)
     {
-        Body.DestroyAllBodies();
-        Body.bodies.Clear();
-
-        BodyList bl = JSONLoader.LoadStars(json);
-        DataBody.LoadBodiesInGame(bl);
-
-        GameObject tempParentGo = GameObject.Find("Bodies");
-        foreach (GameObject go in Body.bodies)
+        try
         {
-            go.transform.SetParent(tempParentGo.transform);
+            Body.DestroyAllBodies();
+            Body.bodies.Clear();
+
+            BodyList bl = JSONLoader.LoadStars(json);
+            DataBody.LoadBodiesInGame(bl);
+
+            GameObject tempParentGo = GameObject.Find("Bodies");
+            foreach (GameObject go in Body.bodies)
+            {
+                go.transform.SetParent(tempParentGo.transform);
+            }
+        }
+        catch (Exception e)
+        {
+            Logger.Error("Exception while loading: " + e);
         }
     }
 
