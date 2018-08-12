@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 7b999b7928188cb428c0a1bb6d022b9a
+timeCreated: 1534069388
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Modern_Sans_Light
+  fontNames:
+  - Modern_Sans_Light
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

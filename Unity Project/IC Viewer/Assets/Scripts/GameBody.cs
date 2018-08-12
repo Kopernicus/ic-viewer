@@ -19,9 +19,10 @@ public class GameBody : MonoBehaviour
         nameText = textGO.AddComponent<Text>();
         nameText.text = "   " + gameObject.name;
 
-        Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        nameText.font = ArialFont;
-        nameText.material = ArialFont.material;       
+        Font font = GameObject.Find("Manager").GetComponent<EditorManager>().globalFont;
+        //Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        nameText.font = font;
+        nameText.material = font.material;       
         nameText.color = ColorManager.thirdColor; //new Color(0.847f, 0.847f, 0.847f, 1);
         nameText.resizeTextForBestFit = true;
 
@@ -57,9 +58,9 @@ public class GameBody : MonoBehaviour
 
     public static void DestroyAllBodies()
     {
-        if (Body.bodies != null)
+        if (DataBody.bodies != null)
         {
-            List<GameObject> gos = Body.bodies;
+            List<GameObject> gos = DataBody.bodies;
 
             foreach (GameObject g in gos)
             {

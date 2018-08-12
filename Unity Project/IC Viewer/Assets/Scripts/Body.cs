@@ -1,81 +1,96 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using sc = SpectralClasses;
 
-[System.Serializable]
-public class Body
+public class Body : MonoBehaviour
 {
+    public static Sprite starSprite, blackHoleSprite;
+
     public string pack, author, bodyName, bodyClass;
     public float soi;
     public Vector3 position;
 
-    static public List<GameObject> bodies { get; set; }
-
-    public static List<GameObject> LoadBodiesInGame(BodyList bodylist, Sprite testBodySprite, Sprite shadowSprite, Sprite raySprite)
+    public static void ParseSpectralClass(DataBody b, out Sprite sprite, out Color color)
     {
-        List<GameObject> gos = new List<GameObject>();
+        SpriteRenderer sr = new SpriteRenderer();
+        color = Color.white;
+        sprite = starSprite;
 
-        foreach(Body b in bodylist.bodies)
+        if (IsSpectralClassSupported(b))
         {
-            GameObject go = new GameObject(b.bodyName);
-            gos.Add(go);
-            GameBody gb = go.AddComponent<GameBody>();
-
-
-            //go.transform.position = b.position;
-
-            //Puts everything on the plane / rotates
-            go.transform.position = new Vector3(b.position.x, b.position.z, b.position.y);
-
-            go.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-
-            go.AddComponent<DisplaySOI>().SphereOfInfluence = b.soi;
-
-            SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-            sr.sprite = testBodySprite;
-
-            #region Plane Shadow
-            GameObject ps = new GameObject(b.bodyName + " Shadow");
-            ps.transform.SetParent(GameObject.Find("Plane Shadows").transform);
-
-            SpriteRenderer srps = ps.AddComponent<SpriteRenderer>();
-            srps.sprite = shadowSprite;
-            srps.color = ColorManager.secondaryColor; //new Color(1f, 0.5f, 0f, 1f);
-
-            ps.transform.position = new Vector3(go.transform.position.x, Camera.main.GetComponent<CameraController>().planeLevel, go.transform.position.z);
-            ps.transform.eulerAngles = new Vector3(90, 0, 0);
-
-            gb.shadow = ps;
-            #endregion
-
-            #region Plane Rays
-            GameObject pr = new GameObject(b.bodyName + " Ray");
-            pr.transform.SetParent(GameObject.Find("Plane Rays").transform);
-
-            SpriteRenderer srpr = pr.AddComponent<SpriteRenderer>();
-            srpr.sprite = raySprite;
-            srpr.color = ColorManager.secondaryColor; //new Color(1f, 0.5f, 0f, 1f);
-
-            pr.transform.position = new Vector3(go.transform.position.x, (go.transform.position.y - ps.transform.position.y) / 2f, go.transform.position.z);
-            gb.ray = pr;
-            pr.transform.localScale = new Vector3(3f, (go.transform.position.y - ps.transform.position.y) * 100f, 0);
-            #endregion
-
+            if (b.bodyClass == "M")
+            {
+                sprite = starSprite;
+                color = new Color32(255, 163, 79, 255);
+            }
+            if (b.bodyClass == "K")
+            {
+                sprite = starSprite;
+                color = new Color32(255, 213, 180, 255);
+            }
+            if (b.bodyClass == "G")
+            {
+                sprite = starSprite;
+                color = new Color32(255, 237, 222, 255);
+            }
+            if (b.bodyClass == "F")
+            {
+                sprite = starSprite;
+                color = new Color32(247, 245, 255, 255);
+            }
+            if (b.bodyClass == "A")
+            {
+                sprite = starSprite;
+                color = new Color32(209, 222, 255, 255);
+            }
+            if (b.bodyClass == "B")
+            {
+                sprite = starSprite;
+                color = new Color32(181, 205, 255, 255);
+            }
+            if (b.bodyClass == "O")
+            {
+                sprite = starSprite;
+                color = new Color32(112, 157, 255, 255);
+            }
+            if (b.bodyClass == "X")
+            {
+                sprite = blackHoleSprite;
+                color = new Color32(40, 40, 40, 255);
+            }
+            if(b.bodyClass == "Unknown")
+            {
+                sprite = blackHoleSprite;
+                color = new Color(1, 0, 1, 1);
+            }
         }
 
-        bodies = gos;
-        return gos;
+        else
+        {
+            sprite = blackHoleSprite;
+            color = new Color(1, 0, 1, 1);
+
+            Debug.LogWarning(b.bodyName + "'s spectral class [" + b.bodyClass + "]" +
+                " is not supported byt the spectral parser !");
+        }
     }
+
+    public static bool IsSpectralClassSupported(DataBody b)
+    {
+        return SpectralClasses.IsDefined(typeof(SpectralClasses), b.bodyClass);
+    }
+
 }
 
-/*public enum SpectralClasses
-{  
+public enum SpectralClasses
+{
     M,
     K,
     G,
     F,
     A,
     B,
-    O
-}*/
+    O,
+    X,
+    Unknown
+}
