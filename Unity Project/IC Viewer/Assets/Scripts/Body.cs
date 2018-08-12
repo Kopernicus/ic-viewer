@@ -22,7 +22,7 @@ public class Body : MonoBehaviour
 
     public static List<GameObject> bodies { get; set; }
 
-    private Text nameText;
+    public Text nameText;
 
     private void Start()
     {
@@ -125,6 +125,7 @@ public class Body : MonoBehaviour
             planeShadow.GetComponent<SpriteRenderer>().color = ColorManager.secondaryColor;
         }
     }
+
     public static void ParseSpectralClass(Body b, out Sprite sprite, out Color color)
     {
         SpriteRenderer sr = new SpriteRenderer();
@@ -201,13 +202,17 @@ public class Body : MonoBehaviour
 
             foreach (GameObject g in gos)
             {
-                Destroy(g.GetComponent<Body>().planeShadow);
-                Destroy(g.GetComponent<Body>().planeRay);
+
+                Body b = g.GetComponent<Body>();
+                Destroy(b.planeShadow);
+                Destroy(b.planeRay);
+                Destroy(b.displaySOI);
+                Destroy(b.nameText);
                 Destroy(g);
             }
         }
     }
-    public static void DestroyAllBodies(List<GameObject> GameObjectBodies)
+    /*public static void DestroyAllBodies(List<GameObject> GameObjectBodies)
     {
         if (GameObjectBodies != null)
         {
@@ -218,7 +223,7 @@ public class Body : MonoBehaviour
                 Destroy(g);
             }
         }
-    }
+    }*/
 
 }
 
