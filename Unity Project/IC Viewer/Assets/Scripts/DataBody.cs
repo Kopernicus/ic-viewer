@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +9,17 @@ public class DataBody
     public string pack, author, bodyName, bodyClass;
     public float soi;
     public Vector3 position;
+    public Boolean reserved;
 
     public static void LoadBodiesInGame(BodyList bodylist)
     {
         foreach (DataBody db in bodylist.bodies)
         {
+            if (db.reserved)
+            {
+                continue;
+            }
+            
             GameObject g = new GameObject(db.bodyName);
             Body b = g.AddComponent<Body>();
             b.pack = db.pack;
