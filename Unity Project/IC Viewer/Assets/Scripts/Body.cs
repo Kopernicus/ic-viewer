@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// TO DO: TOTALLY DELETE GAMEBODY
-/// </summary>
 public class Body : MonoBehaviour
 {
     public static Sprite starSprite, blackHoleSprite, pixelSprite;
@@ -185,8 +182,7 @@ public class Body : MonoBehaviour
         {
             sprite = blackHoleSprite;
             color = new Color(1, 0, 1, 1);
-
-            Debug.LogWarning(b.bodyName + "'s spectral class [" + b.bodyClass + "]" +
+            Logger.Warning(b.bodyName + "'s spectral class [" + b.bodyClass + "]" +
                 " is not supported by the spectral parser !");
         }
     }
