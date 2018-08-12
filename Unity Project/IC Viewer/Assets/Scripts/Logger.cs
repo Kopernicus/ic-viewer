@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
 using System.Reflection;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = System.Object;
@@ -10,7 +11,7 @@ public class Logger : MonoBehaviour
     /// <summary>
     /// The UI element that is used to display the log
     /// </summary>
-    private InputField _display;
+    private TMP_InputField _display;
 
     /// <summary>
     /// Whether to use colored text
@@ -47,8 +48,8 @@ public class Logger : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _display = GetComponent<InputField>();
-        _display.textComponent.supportRichText = UseRichText;
+        _display = GetComponent<TMP_InputField>();
+        _display.textComponent.richText = UseRichText;
         if (_instance != null)
         {
             Destroy(this);
@@ -103,7 +104,7 @@ public class Logger : MonoBehaviour
         String formatted = "[WRN] " + message;
         if (_instance.UseRichText)
         {
-            formatted = "<b><color=" + ColorToHex(_instance.ColorWarning) + ">" + formatted + "</color></b>";
+            formatted = "<color=" + ColorToHex(_instance.ColorWarning) + ">" + formatted + "</color>";
         }
 
         _instance._display.text += formatted + "\n";
@@ -118,7 +119,7 @@ public class Logger : MonoBehaviour
         String formatted = "[ERR] " + message;
         if (_instance.UseRichText)
         {
-            formatted = "<b><color=" + ColorToHex(_instance.ColorError) + ">" + formatted + "</color></b>";
+            formatted = "<color=" + ColorToHex(_instance.ColorError) + ">" + formatted + "</color>";
         }
 
         _instance._display.text += formatted + "\n";

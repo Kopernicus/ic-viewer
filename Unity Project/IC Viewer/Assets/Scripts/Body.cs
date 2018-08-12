@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class Body : MonoBehaviour
 
     public static List<GameObject> bodies { get; set; }
 
-    public Text nameText;
+    public TextMeshProUGUI nameText;
 
     private void Start()
     {
@@ -83,15 +84,14 @@ public class Body : MonoBehaviour
         GameObject textGO = new GameObject(gameObject.name + " Name Text");
         textGO.transform.parent = GameObject.Find("World Canvas").transform;
 
-        nameText = textGO.AddComponent<Text>();
+        nameText = textGO.AddComponent<TextMeshProUGUI>();
         nameText.text = "   " + gameObject.name;
 
         Font font = GameObject.Find("Manager").GetComponent<EditorManager>().globalFont;
         //Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
-        nameText.font = font;
-        nameText.material = font.material;
         nameText.color = ColorManager.thirdColor; //new Color(0.847f, 0.847f, 0.847f, 1);
-        nameText.resizeTextForBestFit = true;
+        nameText.autoSizeTextContainer = false;
+        nameText.fontSize = 14;
 
 
         nameText.rectTransform.sizeDelta = new Vector2(100, 15);
