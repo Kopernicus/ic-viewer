@@ -49,7 +49,7 @@ public class EditorManager : MonoBehaviour
 
     private IEnumerator ImportDatabase()
     {
-        WWW www = new WWW(DatabaseUrl);
+        WWW www = new WWW(DatabaseUrl + "?t=" + Random.value);
         yield return www;
         LoadBodies(www.text);
         Logger.Info("Imported default star database");
